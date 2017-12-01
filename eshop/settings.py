@@ -77,11 +77,11 @@ WSGI_APPLICATION = 'eshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eshop',
-        'USER': 'postgres',
-        'PASSWORD': 'liuchen',
-        'HOST': 'postgres',
-        'PORT': 5432,
+        'NAME': os.environ.get("ESHOP_DATABASE_NAME", None),
+        'USER': os.environ.get("ESHOP_DATABASE_USER", None),
+        'PASSWORD': os.environ.get("ESHOP_DATABASE_PASSWORD", None),
+        'HOST': os.environ.get("ESHOP_DATABASE_HOST", None),
+        'PORT': os.environ.get("ESHOP_DATABASE_PORT", None),
     }
 }
 
