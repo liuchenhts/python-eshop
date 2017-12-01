@@ -1,7 +1,10 @@
+{% extends 'eshop/layout.html' %}
 
-<ul>
-    <li>{{ product.id }}</li>
-    <li>{{ product.name }}</li>
-    <li>{{ product.price }}</li>
-    <li>{{ product.created_date }}</li>
-</ul>
+{% block content %}
+    <ul>
+        <li>{{ product.id }}</li>
+        <li>{{ product.name }}</li>
+        <li>{{ product.price }}</li>
+        <li>{{ product.created_date }}</li>
+    </ul>
+{% endblock %}

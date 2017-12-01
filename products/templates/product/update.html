@@ -1,6 +1,6 @@
-<div>
-  Update Existing Prodcut
-</div>
+{% extends 'eshop/layout.html' %}
 
-{% url 'products:update' product.id as actionUrl %}
-{% include "./_product.html" with action=actionUrl %}
+{% block content %}
+    {% url 'products:update' product.id as actionUrl %}
+    {% include "./_product.html" with action=actionUrl %}
+{% endblock %}

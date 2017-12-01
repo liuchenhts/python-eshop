@@ -30,7 +30,7 @@ def create(request):
         # If data is valid, proceeds to create a new record and redirect the user
         if form.is_valid():
             product = form.save()
-            return HttpResponseRedirect(reverse('products:read', kwargs={'id': product.id}))
+            return HttpResponseRedirect(reverse('products:read', kwargs={'pk': product.id}))
 
     context = {
         'form': form,

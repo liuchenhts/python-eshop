@@ -8,4 +8,4 @@ class Product(models.Model):
             default=timezone.now)
 
     def __str__(self):
-        return '{}, price is= {:.2f}'.format(self.name, self.price)
+        return '{}, price is $AUD {:.2f}'.format(self.name, self.price)

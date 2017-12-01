@@ -1,6 +1,6 @@
-<div>
-  Create New Prodcut
-</div>
+{% extends 'eshop/layout.html' %}
 
-{% url 'products:create' as actionUrl %}
-{% include "./_product.html" with action=actionUrl %}
+{% block content %}
+  {% url 'products:create' as actionUrl %}
+  {% include "./_product.html" with action=actionUrl %}
+{% endblock %}

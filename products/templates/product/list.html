@@ -1,22 +1,24 @@
-<div>
-    Welcome to EShop. This is the {{ eshop_env }} site.
-</div>
-<div>
-    <a href="{% url 'products:create' %}">Create New Product</a>
-</div>
+{% extends 'eshop/layout.html' %}
 
-<div>
-{% if latest_production_list %}
-    <ul>
-    {% for product in latest_production_list %}
-        <li>
-          <a href="{% url 'products:read' product.id %}">{{ product.name }}</a>
-          <a href="{% url 'products:update' product.id %}">update</a>
-          <a href="{% url 'products:delete' product.id %}">delete</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No products are available.</p>
-{% endif %}
-</div>
+{% block content %}
+    {% if latest_production_list %}
+        {% for product in latest_production_list %}
+            <div class="col-lg-4">
+              <div class="product">
+                <div class="top">
+                  <a href="{% url 'products:read' product.id %}">{{ product.name }}</a>
+                  <div>
+                    <p>$AUD {{ product.price }}</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <a href="{% url 'products:update' product.id %}">update</a>
+                  <a href="{% url 'products:delete' product.id %}">delete</a>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No products are available.</p>
+    {% endif %}
+{% endblock %}
