@@ -1,6 +1,7 @@
 import os
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views import generic
 from django.urls import reverse
 from .models import Product
 from .forms import ProductForm
@@ -36,15 +37,23 @@ def create(request):
     }
     return render(request, 'product/create.html', context)
 
-def read(request, id):
-    product = get_object_or_404(Product, pk=id)
+
+# This is the usage of normal controller action
+# This way is more flexible than generic view for complex situations
+def read(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     context = {
             'product': product,
     }
     return render(request, 'product/read.html', context)
 
-def update(request, id):
-    product = get_object_or_404(Product, pk=id)
+# # This is the usage of generic
+# class read(generic.DetailView):
+#     model = Product
+#     template_name = 'product/read.html'
+
+def update(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     if request.method == 'GET':
         form = ProductForm(instance=product)
     else:
@@ -54,7 +63,7 @@ def update(request, id):
         # If data is valid, proceeds to create a new record and redirect the user
         if form.is_valid():
             product = form.save()
-            return HttpResponseRedirect(reverse('products:read', kwargs={'id': product.id}))
+            return HttpResponseRedirect(reverse('products:read', kwargs={'pk': product.id}))
 
     context = {
         'form': form,
@@ -62,7 +71,7 @@ def update(request, id):
     }
     return render(request, 'product/update.html', context)
 
-def delete(request, id):
-    product = get_object_or_404(Product, pk=id)
+def delete(request, pk):
+    product = get_object_or_404(Product, pk=pk)
     product.delete()
     return HttpResponseRedirect(reverse('products:list'))

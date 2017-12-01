@@ -4,5 +4,5 @@ from .models import Product
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'price']
+        fields = ['name', 'price'] # no need to put id
         # exclude = ['created_date']
