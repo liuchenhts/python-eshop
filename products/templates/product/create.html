@@ -1,0 +1,6 @@
+<div>
+  Create New Prodcut
+</div>
+
+{% url 'products:create' as actionUrl %}
+{% include "./_product.html" with action=actionUrl %}

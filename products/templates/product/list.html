@@ -1,0 +1,19 @@
+<div>
+    <a href="{% url 'products:create' %}">Create New Product</a>
+</div>
+
+<div>
+{% if latest_production_list %}
+    <ul>
+    {% for product in latest_production_list %}
+        <li>
+          <a href="{% url 'products:read' product.id %}">{{ product.name }}</a>
+          <a href="{% url 'products:update' product.id %}">update</a>
+          <a href="{% url 'products:delete' product.id %}">delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
+</div>

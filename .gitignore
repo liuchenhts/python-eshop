@@ -13,7 +13,7 @@ dist/
 # Compiled source #
 ###################
 __pycache__/
-.pyc
+*.pyc
 *.com
 *.class
 *.dll
