@@ -1,0 +1,6 @@
+<div>
+  Update Existing Prodcut
+</div>
+
+{% url 'products:update' product.id as actionUrl %}
+{% include "./_product.html" with action=actionUrl %}

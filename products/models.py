@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=30, unique=True)
     price = models.FloatField(default=1.0)
     created_date = models.DateTimeField(
             default=timezone.now)

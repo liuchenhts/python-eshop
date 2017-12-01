@@ -1,6 +1,11 @@
-# python-eshop, 
-1. docker-compose run --rm --service-ports python bash
-2. the above command will start a container for this one-off python-django development env in a bash shell, the django image is built from the Dockerfile
-3. django-admin.py startproject eshop . , run this command in the bash to create a django project skeleton
-4. environment variables is defined in .env file or the local env
-5. docker-compose up -d, to start the server
+# python-eshop
+
+. This is the demo of eshop web application developed by using python, django and postgres.
+. This demo will try to demonstrate the best practices of python web application development.
+. Docker is used for development environment setup and production like environment deployment.
+
+
+1. set up dependent postgres database
+2. set up dependent container environment variables, which are saved in the envfiles folder
+3. run devenvrun.sh to start development
+4. run proenvrun.sh to deploy the service to production

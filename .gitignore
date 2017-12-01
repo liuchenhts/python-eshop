@@ -2,9 +2,7 @@
 ###################
 .*
 !.gitignore
-*.project
-*.settings
-*.buildpath
+
 # Directories
 ###################
 CVS/
@@ -15,6 +13,8 @@ dist/
 .idea/
 # Compiled source #
 ###################
+__pycache__/
+*.pyc
 *.com
 *.class
 *.dll
