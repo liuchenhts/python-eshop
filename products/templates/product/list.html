@@ -2,23 +2,83 @@
 
 {% block content %}
     {% if latest_production_list %}
+        <script>
+          $(document).ready(function() {
+
+            $('a.deleteLink').click(function() {
+              swal({
+                title : 'Confirm',
+                text : "Are you sue to delete?",
+                type : 'warning',
+                showCancelButton : true,
+                confirmButtonColor : '#3085d6',
+                cancelButtonColor : '#d33',
+                confirmButtonText : 'Yes',
+                cancelButtonText : 'Cancel'
+              }, function() {
+                  alert('hi');
+              });
+            });
+
+          });
+
+      		function deleteProduct(productId){
+
+      			var action = "{% url 'products:delete' %}" + productId + "/";
+
+      			var form = $("#deleteProductForm");
+
+      			form.attr("action", action);
+      			form.submit();
+      		}
+       </script>
+
+
+    	<form method="post" id="deleteProductForm">
+        {% csrf_token %}
+    	</form>
+
         {% for product in latest_production_list %}
-            <div class="col-lg-4">
-              <div class="product">
-                <div class="top">
-                  <a href="{% url 'products:read' product.id %}">{{ product.name }}</a>
-                  <div>
-                    <p>$AUD {{ product.price }}</p>
-                  </div>
+
+          <div class="col-lg-4">
+            <div class="product">
+              <div class="top">
+                <a href="{% url 'products:read' product.id %}">{{ product.name }}</a>
+                <div>
+                  <p>$AUD {{ product.price }}</p>
                 </div>
-                <div class="bottom">
+              </div>
+              <div class="bottom">
                   <a href="{% url 'products:update' product.id %}">update</a>
-                  <a href="{% url 'products:delete' product.id %}">delete</a>
-                </div>
-            </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No products are available.</p>
-    {% endif %}
+                  <!--<a id="#deleteLink" href="{% url 'products:delete' product.id %}">delete</a>-->
+                  <input class="btn btn-danger center-block pull-right "
+															type="button" data-toggle="modal"
+															data-target="#confirm-delete_{{product.id}}" value="Delete Product" />
+
+
+  								<div class="modal fade" id="confirm-delete_{{product.id}}"
+  									tabindex="-1" role="dialog"
+  									aria-labelledby="myModalLabel" aria-hidden="true">
+  									<div class="modal-dialog">
+  										<div class="modal-content">
+  											<div class="modal-header">
+  												<b style="color: red">Confirm</b>
+  											</div>
+  											<div class="modal-body">Are you sure to delete the product?</div>
+  											<div class="modal-footer">
+  												<button type="button" class="btn btn-default"
+  													data-dismiss="modal">Cancel</button>
+  												<a class="btn btn-danger btn-ok"
+  													onclick="deleteProduct('{{product.id}}')">Yes</a>
+  											</div>
+  										</div>
+  									</div>
+  								</div>
+              </div>
+          </div>
+          </div>
+      {% endfor %}
+  {% else %}
+      <p>No products are available.</p>
+  {% endif %}
 {% endblock %}
