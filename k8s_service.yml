@@ -1,0 +1,20 @@
+# This is the base compose file for all containers
+# docker-compose run --rm --service-ports python bash
+# the above command will start a container for this one-off python-django development env in a bash shell
+# django-admin.py startproject eshop . , run this command in the bash to create a django project skeleton
+# environment variables is defined in .env file or the local env
+# docker-compose up -d, to start the server
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshop
+spec:
+  selector:
+    app: eshop
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  type: NodePort #access via node ip and port number
