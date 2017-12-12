@@ -36,6 +36,6 @@ spec:
           - name: ESHOP_DATABASE_PORT
             value: "5432"
           command: ["python"]
-          args: ["manage.py", "runserver", "0.0.0.0:80"]
+          args: ["manage.py", "runserver", "0.0.0.0:8000"]
           ports:
           - containerPort: 80
