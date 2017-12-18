@@ -16,7 +16,6 @@ def list(request):
     latest_production_list = Product.objects.order_by('-created_date')[:50]
     context = {
         'latest_production_list': latest_production_list,
-        'eshop_env': os.environ.get("ESHOP_ENV", None),
     }
     return render(request, 'product/list.html', context)
 
